@@ -1,0 +1,228 @@
+﻿<html class="no-js" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<title>jQuery可拖放多列网格布局</title>
+	<link rel="stylesheet" href="../easyui/themes/default/easyui.css" type="text/css"></link>
+	<link rel="stylesheet" href="../easyui/themes/icon.css" type="text/css"></link>
+	<link rel="stylesheet" type="text/css" href="css/jquery.gridster.min.css">
+	<script type="text/javascript" src="../jquery/1.10.2/jquery.min.js"></script>
+	<script type="text/javascript" src="../easyui/1.3.6/jquery.easyui.min.js"></script>
+	<script type="text/javascript" charset="utf-8" src="js/jquery.gridster.js"></script>
+</head>
+<style>
+
+.icon-mm{
+	background:url('img/mm.png') no-repeat center center;
+}
+
+.search_Div { 
+	width: 240px; 
+	height: 27px; 
+	margin:10px 0px 5px 0px;
+	border:1px solid #87CEEB;
+	background: #87CEEB; 
+}
+
+.search_Div .search_box { 
+	float: left; 
+	padding: 0; 
+	margin: 0px; 
+	border: 0; 
+	width: 185px; 
+	height: 25px; 
+	background: white; 
+	font-size: .8em; 
+}
+
+.search_Div #go { 
+	float: right; 
+	margin: 0px; 
+	width: 50px; 
+	height: 26px; 
+	border:0px;
+	color:white;
+	background: #87CEEB; 
+	cursor: pointer;
+	align:center;
+	
+} 
+
+</style>
+<body >
+	<button onclick="creatEle()">创建元素</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<button onclick="changeEle()">修改元素</button>
+    <section class="gridbg" >
+        <div class="gridster" ><ul></ul></div>
+  	</section>
+  
+
+<div id="releated_win" title=" 关联设置 " style="width:270px;height:280px;padding:5px 10px;"   data-options="iconCls:'icon-save',closed:true">      
+     <div class="search_Div"> 
+		<input type="text" id="releated" class="search_box" value="" placeholder="请输入或选择关联对象"  class="swap_value" onkeydown="" /> 
+		<input type="button" value="保存" id="go"  onclick="saveReleated()" /> 
+	</div>
+	<ul id="tt" class="easyui-tree" data-options="onSelect:function(node){$('#releated').val(node.text)}";>   
+          <li>   
+              <span>Sub Folder 1</span>   
+              <ul>   
+                  <li>   
+                      <span>File 11</span>   
+                  </li>   
+                  <li>   
+                      <span>File 12</span>   
+                  </li>   
+                  <li>   
+                      <span>File 13</span>   
+                  </li>   
+              </ul>   
+          </li>   
+          <li>   
+              <span>File 2</span>   
+          </li>   
+          <li>   
+              <span>File 3</span>   
+          </li>   
+	</ul>
+
+
+
+</div>
+
+   
+<script type="text/javascript">
+/****
+*	这里是通过创建的属性来设定每一个区域的大小及定位,所涉及的属性如下：
+*	data-row:数据行，元素所存在的行数。
+*	data-col:数据列，元素所存在的列数。
+*	data-sizex:元素块的宽（以个为单位，每个元素块的宽度为widget_base_dimensions所设定的值）
+*	data-sizey:元素块的高（以个为单位，每个元素块的高度为widget_base_dimensions所设定的值）
+*	例：widget_base_dimensions: [150, 150]
+*	那么每个元素块的宽/高分别为150px/150px
+*	注：元素块合并时的宽度并不只是两个元素块之和
+*	即宽度={data-sizex=”2″}=元素块X2+右侧的边距==150*2+4=304px
+*	高度={data-sizey=”1″}=元素块X1==150*1=150px
+*	这里我们只需要设定两个数值，宽高/边距；如
+*	widget_margins:
+*	设置网格之间的外边距；所传的数值是实际像素的2倍，如[2,2]==[4px,4px]=[右边距，下边距]。
+*	widget_base_dimensions:
+*	设置网格的宽高；所传的数值=实际像素，如[150,150]==[150px,150px]=[width,height]。
+*
+*/
+  var gridster;
+  $(function(){
+    gridster = $(".gridster > ul").gridster({
+        widget_margins: [10, 10],
+        widget_base_dimensions: [160, 160],
+        min_cols: 6
+    }).data('gridster');
+  });
+  
+function changeEle(){
+
+	var gridster = $(".gridster ul").gridster().data('gridster');//只能通过 样式得到ul   
+	alert("row:"+gridster.rows+"--cols"+gridster.cols);  
+	gridster.options.widget_width = 180;
+	$("#d0").attr("data-sizex","3").attr("data-sizey","3");
+	/**
+	for(var i in gridster){
+		try{
+			alert(i+"=====123====="+JSON.stringify(gridster[i]));
+		}catch(e){
+			alert(i+"=====123====="+gridster[i]);
+		}
+	}
+	*/
+}
+
+/*************************************下面是创建磁贴的代码**************************************开始*************************/
+var eleId=0,nrows=1, ncols=0, sizex=1, sizey=1;
+
+function creatEle(){
+	++ncols;
+	if(ncols%2 == 0) {
+		sizex=2;
+		sizey=2;
+	}else{
+		sizex=3;
+		sizey=3;
+	}
+	creatElegridLi(eleId++,nrows,ncols,sizex,sizey,'#473373');
+	if(ncols==6){
+		ncols=0;
+		nrows++;
+	}
+}
+
+/*
+*<li style="background:#473373;" data-row="1" data-col="6" data-sizex="1" data-sizey="2">
+*/
+function creatElegridLi(eleId,nrow,ncol,sizex,sizey,bgcolor){
+	var frmW = 160*sizex;
+	var frmH = 160*sizey-2;
+	//下面是iframe内容窗口
+	var ifrm = "<iframe id='f"+eleId+"' style='position:relative;height:"+frmH+"px;width:"+frmW+"px; visibility:inherit;' frameborder='0' src='http://news.163.com'></iframe>";
+	var ele = "<li id='d"+eleId+"' onDblClick='openReleatdPage(\""+eleId+"\")' data-row='"+2+"' data-col='"+5+"' data-sizex='"+sizex+"' data-sizey='"+sizey+"' class='gs_w'";
+	ele += ">";
+	//ele += nrow+"|"+ncol;
+	var mb_id = eleId+'_mb';
+	var mm_id = eleId+'_mm';
+	//ele += '<div style="float:right;">';
+	//ele += '	<a id="'+mb_id+'" href="#"></a>';
+	//ele += '	<div id="'+mm_id+'" style="width:100px;">';
+	//ele += '	<div onclick="openEleReleatedWin(\''+eleId+'\')">关联设置</div>';
+	//ele += '	<div onclick="alert(3)">删除</div></div>'
+	//ele += '</div>';
+	ele += ifrm;
+	ele += "</li>";
+	gridster.add_widget(ele,sizex,sizey);
+	//$('#'+mb_id).menubutton({    
+	//    iconCls: 'icon-mm',
+	//    plain:true,    
+	 //   text:'',
+    //	menu:'#'+mm_id ,
+    //	size:'small'
+	//}); 
+}
+/*************************************下面是创建磁贴的代码**************************************结束*************************/
+/**
+ *关联对象窗口定义
+ **/
+$('#releated_win').window({ 
+	top:200,   //如果不设置，窗口顶部会被遮挡
+    modal:true     
+}); 
+
+
+/**
+ *打开关联对象窗口，并将元素ID赋值到窗口属性对象中，方便保存时获取元素ID
+ **/
+function openEleReleatedWin(eleId){
+	var ops = $('#releated_win').window('options'); 
+	ops.eleID = 'd'+eleId;
+	$('#releated_win').window('open'); 
+}
+
+
+/**
+ *把关联对象绑定到对应元素属性上，元素属性为：relateds
+ **/	
+function saveReleated(){
+	var ops = $('#releated_win').window('options'); 
+	var ele_ID = ops.eleID;
+	//这里可能需要加码
+	var releated_val = $('#releated').val();
+	$("#"+ele_ID).attr('relateds',releated_val);
+	alert($("#"+ele_ID).attr('relateds'));
+}
+
+	
+/**
+ * 双击事件，打开磁块的关联对象
+ **/
+function openReleatdPage(eleID){
+	window.open("www.baidu.com");
+}
+</script>
+</body>
+</html>

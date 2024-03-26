@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>selecttest</title>
+    <link rel="stylesheet" type="text/css" href="jquery-easyui-1.3.6/themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="jquery-easyui-1.3.6/themes/icon.css">
+    <link rel="stylesheet" type="text/css" href="jquery-easyui-1.3.6/demo/demo.css">
+    <script type="text/javascript" src="jquery-easyui-1.3.6/jquery.min.js"></script>
+    <script type="text/javascript" src="jquery-easyui-1.3.6/jquery.easyui.min.js"></script>
+    <script  type="text/javascript" src="js/common.js?" charset="utf-8"></script>
+    <script  type="text/javascript" src="js/wins.js"></script>
+    <script  type="text/javascript" src="js/json2.js"></script>
+    <script  type="text/javascript" src="js/uploadItem.js" charset="utf-8"></script>
+    <script  type="text/javascript" src="js/uploadComm.js" charset="utf-8"></script>
+
+</head>
+<body onload="loads()" style="background-color:#d2d2d2 ">
+
+
+<h2>Basic DataGrid</h2>
+<p>The DataGrid is created from markup, no JavaScript code needed.</p>
+<div style="margin:20px 0;"></div>
+
+<table id="dg" class="easyui-datagrid" title="Basic DataGrid" style="width:700px;height:auto"
+
+       data-options="
+       iconCls:'icon-edit',
+       singleSelect:true,
+       toolbar:'#tb',
+	   onClickRow: onClickRow
+
+">
+
+    <thead>
+    <tr>
+        <th data-options="field:'wid',width:140,editor:'numberbox'">wid</th>
+        <th data-options="field:'username',width:150,editor:'text'">username</th>
+        <th data-options="field:'password',width:150,editor:'numberbox'">password</th>
+    </tr>
+    </thead>
+</table>
+
+<div id="tb" style="height:auto">
+    <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:true" onclick="append()">Append</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-save',plain:true" onclick="accept()">Accept</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true" onclick="remove()">Remove</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-save',plain:true" onclick="removeaccept()">RemoveAccept</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-undo',plain:true" onclick="reject()">Reject</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-search',plain:true" onclick="getChanges()">GetChanges</a>
+</div>
+
+
+<script type="text/javascript">
+    var rows = undefined;
+    var rowData = undefined;
+    var editIndex = undefined;
+    var username = undefined;
+    var password = undefined;
+    var wid = undefined;
+
+    function loads(){
+        var servelet = "sqltype.do?username=&password=&wid=&opertype=select";
+        var infordata = startRequest(servelet);
+        // alert(infordata);
+        var data = JSON.parse(infordata);          // JSON.stringify()
+        $('#dg').datagrid('loadData',data);
+    }
+    //添加后 ‘#dg table正常显示’
+    function onClickRow(index){
+        if (editIndex != index){
+            if (endEditing()){
+                $('#dg').datagrid('selectRow', index)
+                    .datagrid('beginEdit', index);
+                editIndex = index;
+            } else {
+                $('#dg').datagrid('selectRow', editIndex);
+            }
+        }
+    }
+
+    //结束单击事件
+    function endEditing(){
+        if (editIndex == undefined){return true}
+        if ($('#dg').datagrid('validateRow', editIndex)){
+
+            rows = $('#dg').datagrid('getRows');
+            // var jsonrows = JSON.stringify(rows);
+            // alert(jsonrows);
+            rowData = rows[editIndex];
+            console.log(rowData);
+
+            $('#dg').datagrid('endEdit', editIndex);
+            editIndex = undefined;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    //单击append按钮
+    function append(){
+        if (endEditing()){
+            $('#dg').datagrid('appendRow',{status:'P'});
+            // editIndex = $('#dg').datagrid('getRows').length-1;
+            $('#dg').datagrid('selectRow', editIndex)
+                .datagrid('beginEdit', editIndex);
+        }
+    }
+    //单机accept按钮
+    function accept(){
+        if (endEditing()){
+
+            username = rowData.username;
+            password = rowData.password;
+            wid =rowData.wid;
+
+            // alert("username:"+username+" password:"+password+" wid:"+wid);
+
+            //update
+            var serveletupdate = "sqltype.do?username="+username+"&password="+password+"&wid="+wid+"&opertype=update";
+            var infordataupdate = startRequest(serveletupdate);
+
+            //insert
+            var serveletinsert = "sqltype.do?username="+username+"&password="+password+"&wid="+wid+"&opertype=insert";
+            var infordatainsert = startRequest(serveletinsert);
+            alert("infordatainsert-----129-----:"+infordatainsert);
+
+        }
+    }
+    //单机remove按钮
+    function remove(){
+        if(editIndex==undefined){
+            return true
+        }
+        rows = $('#dg').datagrid("getRows");
+        rowData = rows[editIndex];
+        alert("rows:"+rows+" rowData:"+rowData);
+
+        console.log(rowData);
+        $('#dg').datagrid('cancelEdit',editIndex).datagrid('deleteRow',editIndex);//取消编辑行并删除
+
+    }
+
+    function removeaccept() {
+
+        if (endEditing()){
+            wid = rowData.wid;
+            alert("wid:"+wid);
+
+            var deletesql="sqltype.do?wid="+wid+"&opertype=delete";
+            var infordatadelete = startRequest(deletesql);
+
+        }
+
+    }
+
+</script>
+
+</body>
+
+</html>

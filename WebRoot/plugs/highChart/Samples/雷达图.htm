@@ -1,0 +1,49 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>Highcharts Example</title>
+		<script type="text/javascript" src="../js/jquery/1.9.1/jquery.min.js"></script>		
+		<script type="text/javascript" src="../js/highcharts.js"></script>
+		<script type="text/javascript" src="../js/highcharts-more.js"></script>
+		<script type="text/javascript" src="../js/modules/exporting.js"></script>		
+	</head>
+	<body>
+		<div id="container" style="min-width: 310px; max-width: 400px; height: 400px; margin: 0 auto"></div>
+	</body>
+		<script type="text/javascript">
+			$(function () {
+			    $('#container').highcharts({
+			        
+				    chart: {
+				        polar: true
+				    },
+				    
+				    title: {
+				        text: 'Highcharts Polar Chart'
+				    },
+
+				    xAxis: {
+		    			title: {text: ''}
+		        		,categories: true//这里设置为true时，X轴会以series数据集中最后一个series的data的name作为X轴
+				    },
+				    
+		
+				    series: [{
+				        type: 'column',
+				        name: 'Column',
+				        data: [{name:"一月",y:8}, {name:"二月",y:7}, {name:"三月",y:6}, {name:"四月",y:5}, {name:"五月",y:4}],
+				        pointPlacement: 'between'
+				    }, {
+				        type: 'line',
+				        name: 'Line',
+				        data: [{name:"一月",y:1}, {name:"二月",y:2}, {name:"三月",y:3}, {name:"四月",y:4}, {name:"五月",y:5}]
+				    }, {
+				        type: 'area',
+				        name: 'Area',
+				        data: [{name:"一月",y:1}, {name:"二月",y:8}, {name:"三月",y:2}, {name:"四月",y:7}, {name:"五月",y:3}]
+				    }]
+				});
+			});
+		</script>	
+</html>

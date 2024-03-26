@@ -1,0 +1,44 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <title>Test.html</title>
+    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+    <meta http-equiv="description" content="this is my page">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<link rel="stylesheet" href="css/flow.css" type="text/css">
+	<link rel="stylesheet" href="css/wfShape.css" type="text/css">
+	<link type="text/css" rel="stylesheet" href="../ContextMenu/ContextMenu.css" />
+	<script type="text/javascript" src="../jquery/1.10.2/jquery.min.js"></script>
+	<script language="javascript" type="text/javascript" src="js/lib/arbor.js"></script>
+	<script language="javascript" type="text/javascript" src="js/lib/svg.js"></script>
+  	<script language="javascript" type="text/javascript" src="../../js/common.js"></script>
+  	<script language="javascript" type="text/javascript" src="../../js/json2.js"></script>
+	<script language="javascript" type="text/javascript" src="../ContextMenu/ContextMenu.js"></script>
+	<script language="javascript" type="text/javascript" src="js/wfEdited.js"></script>
+  </head>
+  
+  <body onselectstart="return false">
+  	<div id="viewport"></div>
+  	<script>
+  	 		var three = [{"nodes" :{
+ 							  "a":{"alias":"a table","progress":false,"shape":"table","title":"table a","texts":"text11111.,text12.,text13.;text21.,text2222222222.,text23.;text31.,text32.,text333333.;text41.,text42.,text43","images":"image1.jpg.,.,.,20.,20.;image2.jpg.,.,.,0.,0"},
+ 							  "b":{"alias":"a circle","shape":"circle","radius":30},
+ 							  "c":{"alias":"a diamond","progress":false ,"shape":"diamond","base":120,"height":120}, 
+ 							  "d":{"alias":"one rectangle","shape":"rectangle","width":140,"height":100}
+ 							 },
+ 					"edges" :{"a":{"b":{"twoway":true,},"c":{},},
+ 							  "b":{},
+ 							  "c":{},
+ 							   },
+ 							   }]
+    $(document).ready(function(){
+    	workflow = new WorkFlow("viewport",null,null);
+    	//var sys = arbor.ParticleSystem(0, 10, 1, false, 25,0.04,0.05);
+    	var sys = arbor.ParticleSystem(600, 1000, .5, 55, .02, false);
+    	sys.renderer  = workflow.GetRenderer();
+    	sys.graft(three[0]);
+    	//alert(sys.renderer.init);
+    })	
+    </script>
+  </body>
+</html>

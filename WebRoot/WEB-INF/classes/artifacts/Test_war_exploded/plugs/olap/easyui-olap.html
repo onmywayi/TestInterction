@@ -1,0 +1,113 @@
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Context Menu on DataGrid - jQuery EasyUI Demo</title>
+	<link rel="stylesheet" type="text/css" href="../easyui/themes/default/easyui.css"></link>
+	<link rel="stylesheet" type="text/css" href="../easyui/themes/icon.css">
+	<script type="text/javascript" src="../jquery/1.10.2/jquery.min.js"></script>
+	<script type="text/javascript" src="../easyui/1.3.6/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="../../js/json2.js"></script>
+	<script type="text/javascript" src="../../js/common.js"></script>
+	<script type="text/javascript" src="easyui.olap.js"></script>
+	<style type="text/css">
+		{margin: 0; padding: 0;}
+		body {font: 13px/20px "Microsoft YaHei",arial,serif;overflow-x:hidden;}
+		html {overflow-x:hidden;}
+		a, a:link, a:visited {color: #ccc; text-decoration: none;}
+		olap {cursor:pointer;margin-right:5px;font-weight:bold;};//点击事件的代码
+	</style>
+</head>
+<body >
+	<table id="dg"></table>
+	<script type="text/javascript">
+
+    var data = [
+	{"itemid":"<label id='d10' hidden='hidden'>EST-1</label>EST-1",  "productid":"<label id='d11' hidden='hidden'>FI-SW-01</label>FI-SW-01","productname":"<olap>+</olap><label id='d12' hidden='hidden'>Koi</label>Koi","unitcost":10.00,"status":"P","listprice":36.50},
+	{"itemid":"<label id='d20' hidden='hidden'>EST-10</label>EST-10","productid":"<olap>+</olap><label id='d21' hidden='hidden'>K9-DL-01D21</label>K9-DL-01","productname":"<olap>+</olap><label id='d22' hidden='hidden'>Dalmation</label>Dalmation","unitcost":12.00,"status":"P","listprice":18.50},
+	{"itemid":"<label id='d30' hidden='hidden'>EST-11</label>EST-11","productid":"<label id='d31' hidden='hidden'>RP-SN-01</label>RP-SN-01","productname":"<olap>+</olap><label id='d32' hidden='hidden'>Rattlesnake</label>Rattlesnake","unitcost":12.00,"status":"P","listprice":38.50},
+	{"itemid":"<label id='d40' hidden='hidden'>EST-12</label>EST-12","productid":"<label id='d41' hidden='hidden'>RP-SN-01</label>RP-SN-01","productname":"<label id='d42' hidden='hidden'>Rattlesnake</label>Rattlesnake","unitcost":12.00,"status":"P","listprice":26.50},
+	{"itemid":"<label id='d50' hidden='hidden'>EST-13</label>EST-13","productid":"<label id='d51' hidden='hidden'>RP-LI-02</label>RP-LI-02","productname":"<label id='d52' hidden='hidden'>Iguana</label>Iguana","unitcost":12.00,"status":"P","listprice":35.50}];	
+	
+	var options = {
+				title: '多维分析',
+				width: 1200,
+				height: 650,
+				//fitColumns: true,//这个代码最好别加，否则不好拖动列的宽度
+				singleSelect: true,
+				columns:[[
+					{field:'itemid',title:'Item ID'},
+					{field:'productid',title:'Product ID'},
+					{field:'productname',title:'productName'},
+					{field:'unitcost',title:'Unit Cost',align:'right'},
+					{field:'listprice',title:'List Price',align:'right'},
+					{field:'status',title:'Status',align:'center'}
+				]]
+				,onHeaderContextMenu: function(e, field){
+					e.preventDefault();
+					if (!cmenu){
+						createColumnMenu();
+					}
+					cmenu.menu('show', {
+						left:e.pageX,
+						top:e.pageY
+					});
+				}
+				,onClickCell: function(rowIndex, field, value) {//单元格的单击事件 
+					//value的值为:<label id='d10' hidden='hidden'>EST-1</label>EST-1或<label id='d21' hidden='hidden'>K9-DL-01</label><olap>+</olap>K9-DL-01
+					$("#dg").datagrid('selectRow', rowIndex);//选中当前行
+					var eleTagName = $(value).prop('tagName');//OLAP
+					if(eleTagName && eleTagName=="OLAP"){//如果是olap,则进行收起或下钻动作
+						olapEvent('dg',rowIndex, field, value);
+					}					
+	            }
+	            /**
+		        ,onLoadSuccess: function (data){//bind数据成功重新设置拖动对象        
+		           colExchangeDrag();//绑定datagrid表头列交换事件
+		        }
+		        */
+			};
+			
+			
+		$(function(){
+			var sh = document.body.clientHeight;
+			var sw = document.body.clientWidth;
+			options.width = sw-30;
+			options.height= sh-18;
+			$('#dg').datagrid(options);
+			$('#dg').datagrid('loadData',data); //向表格中加载数据
+		});
+		var cmenu;
+		function createColumnMenu(){
+			cmenu = $('<div/>').appendTo('body');
+			cmenu.menu({
+				onClick: function(item){
+					if (item.iconCls == 'icon-ok'){
+						$('#dg').datagrid('hideColumn', item.name);
+						cmenu.menu('setIcon', {
+							target: item.target,
+							iconCls: 'icon-empty'
+						});
+					} else {
+						$('#dg').datagrid('showColumn', item.name);
+						cmenu.menu('setIcon', {
+							target: item.target,
+							iconCls: 'icon-ok'
+						});
+					}
+				}
+			});
+			var fields = $('#dg').datagrid('getColumnFields');
+			for(var i=0; i<fields.length; i++){
+				var field = fields[i];
+				var col = $('#dg').datagrid('getColumnOption', field);
+				cmenu.menu('appendItem', {
+					text: col.title,
+					name: field,
+					iconCls: 'icon-ok'
+				});
+			}
+		}
+		
+	</script>
+</body>
+</html>

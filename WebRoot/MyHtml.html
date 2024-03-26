@@ -1,0 +1,140 @@
+<!DOCTYPE>
+<html>
+  <head>
+    <title>Myhtml.html</title>
+	
+    <meta name="keywords" content="keyword1,keyword2,keyword3"/>
+    <meta name="description" content="this is my page"/>
+   
+     <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+   	<link rel="stylesheet" href="css/style.css"/>
+   	<script  type="text/javascript" src="js/common.js"></script>
+</head>
+  
+  <body >
+ 	<div style="height:120px;text-align: center;margin-bottom:0;background-color:blue"><h1 >标题内容</h1></div>
+ 	<div style="height:450px;width:180px;float:left;background-color:green">左侧内容<br>内容</div>	
+  	
+  	<div id="btm" onsubmit="return false;">
+  	 	<div id="tp">		
+			<img src="https://cdn.wwads.cn/creatives/SsLRqW5x8HX42nfLIJArRIdXPducqk5yb9kPXe1h.png" 
+			alt="图片的替换文本" style="height:180px;width:230px"/>
+		</div>
+  	 	
+  	 	
+	  	 	<div id="dierc" >  	 	 	
+				<input type="text" id="yhm" placeholder="请输入用户名"  name='yhm' value="admin">
+					
+				<input type="password" id="mima" name="mima" value="12345678">
+			<form name="form1" method="post" >
+				<input type="button" id = "button" onclick="test()" value="登录" /> 
+			</form>
+			
+			</div>
+			
+		</div>
+		
+	
+	<div style="clear:both;text-align:center;background-color:#FFA500">
+	底部内容<br>	内容
+	</div>
+ 
+<script  type="text/javascript" >
+	
+	function test(){
+	
+		var name =getEleVal("yhm");	
+		
+		var pwd = getEleVal("mima");
+		
+		
+		if(name==""||name.length<2||name.length>15){
+			alert("用户名不能为空，且长度限制为3-15");
+			return false;
+		}else if(pwd==""||pwd.length<8||pwd.length>16){
+			alert("密码不能为空，且长度限制为8-16");
+			return false;
+		}
+			
+				
+			var param = "name="+name+"&pwd="+pwd;
+			alert(param);
+			//var param = "checkType = 6 & name="+tocode(JSON.stringify(ob));
+			form1.action = "login.do?"+param;			
+			form1.submit();
+	}		
+	
+</script>
+	
+<!--  
+	window.onload=function() {
+		
+		var  yh = document.getElementById("yhm")	
+		var password = document.getElementById("mima").value;
+		
+		var new_n
+		var new_p
+		var con = {yhm:[12345,],  mima:["qwerqwer",]}
+		
+		yhm.onchange=function(){
+			new_n = yh.value
+		}
+		mima.onchange=function(){
+			new_p = password
+		}
+		
+		function test(){
+		
+		if((new_n==con.yhm[0])&&(new_p == con.mima[0])&&(new_n!="")&&(new_p!="")){
+			alert('成功')
+		}else{
+		
+		alert('失败')}
+	
+		if(yh.value==""||yh.value.length<3){
+			alert("用户名不能小于三位");
+			return false;
+		}else if(password=""||password.length<6){
+			alert("密码不能小于6位");	
+			
+		}else{
+			alert("满足条件");
+			return true;
+			window.location.href='www.taobao.com'; 
+		} 
+	}
+}
+-->
+
+	
+<!--
+<script language="javascript" type="text/javascript">
+ function test() {
+ 	
+ 	var name = document.getElementById("yhm");
+ 	var word = document.getElementById("mima");	
+ 	var sex =document.getElementsByName("sex");
+ 	var s="";
+ 	for(i=0;i<sex.length;i++){
+ 	if(sex[i].checked==true){
+ 	s=sex[i].value;
+ 		}
+ 	} 	
+ 	var fruit =document.getElementsByName("fruit"); 	
+ 	var f= "";
+ 	for(var i=0;i<fruit.length;i++	){
+ 	  if(fruit[i].checked==true){
+ 	  f+=fruit[i].value+",";
+ 	  }
+ 	}
+ 	alert('6666');
+ 	var hobby = document.getElementById("hobby"); 	
+ 	alert ('用户名：'+name.value +'\n'
+		+'密码：'+word.value+'\n'+'性别：'+s+'\n'+'爱吃的水果:'+f+'\n'+
+		'爱好：'+hobby.value);
+ }
+</script>
+-->
+
+  </body>
+</html>

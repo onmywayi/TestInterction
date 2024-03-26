@@ -1,0 +1,177 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <title>demo.html</title>
+    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+    <meta http-equiv="description" content="this is my page">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <script src="js/esl.js" type="text/javascript"></script>
+  </head>
+  
+  
+<body　onload="setDiv()">
+	<div id="main" style="width:800px;height:600px;"></div>
+</body>
+ <script type="text/javascript">
+ var fileLocation ='js/echarts-map';
+	require.config({
+		paths:{'echarts': fileLocation}
+	});
+	
+	function setDiv(){
+		var width=document.body.clientWidth*0.96;
+		var height=document.body.clientHeight*0.85;
+		 document.getElementById('main').style.height=height+"px"; //设定定高
+		 document.getElementById('main').style.width=width+"px"; //设定定宽
+	}
+
+// 作为入口
+require(
+    ['echarts','echarts/chart/map'], 
+    function (ec) {
+    setDiv();
+	var myChart = ec.init(document.getElementById('main'));
+	var option = {
+	    title : {text: '产品销量',subtext: '',x:'center'},
+	    tooltip : {trigger: 'item'},
+	    legend: {
+	        orient:'horizontal',x:'15%',y:'10%',
+	        data:['产品1','产品2','产品3']
+	    },
+	    dataRange: {
+	        min: 0,max: 2500,
+	        x: 'left',y: 'bottom',
+	        text:['高','低'],//文本，默认为数值文本
+	        calculable : true
+	    },
+	    toolbox: {
+	        show : true,
+	        orient : 'vertical',
+	        x: 'right',
+	        y: 'center',
+	        feature : {
+	            mark : {show: true},
+	            dataView:{show: true, readOnly: false},
+	            restore :{show: true},
+	            saveAsImage : {show: true}
+	        }
+	    },
+	    series : [
+	        {
+	            name: '产品1',
+	            type: 'map',
+	            mapType: 'china',
+	            roam: true,
+	            itemStyle:{
+	                normal:{label:{show:true}},
+	                emphasis:{label:{show:true}}
+	            },
+	            data:[
+	                {name: '北京',value: Math.round(Math.random()*1000)},
+	                {name: '天津',value: Math.round(Math.random()*1000)},
+	                {name: '上海',value: Math.round(Math.random()*1000)},
+	                {name: '重庆',value: Math.round(Math.random()*1000)},
+	                {name: '河北',value: Math.round(Math.random()*1000)},
+	                {name: '河南',value: Math.round(Math.random()*1000)},
+	                {name: '云南',value: Math.round(Math.random()*1000)},
+	                {name: '辽宁',value: Math.round(Math.random()*1000)},
+	                {name: '黑龙江',value: Math.round(Math.random()*1000)},
+	                {name: '湖南',value: Math.round(Math.random()*1000)},
+	                {name: '安徽',value: Math.round(Math.random()*1000)},
+	                {name: '山东',value: Math.round(Math.random()*1000)},
+	                {name: '新疆',value: Math.round(Math.random()*1000)},
+	                {name: '江苏',value: Math.round(Math.random()*1000)},
+	                {name: '浙江',value: Math.round(Math.random()*1000)},
+	                {name: '江西',value: Math.round(Math.random()*1000)},
+	                {name: '湖北',value: Math.round(Math.random()*1000)},
+	                {name: '广西',value: Math.round(Math.random()*1000)},
+	                {name: '甘肃',value: Math.round(Math.random()*1000)},
+	                {name: '山西',value: Math.round(Math.random()*1000)},
+	                {name: '内蒙古',value: Math.round(Math.random()*1000)},
+	                {name: '陕西',value: Math.round(Math.random()*1000)},
+	                {name: '吉林',value: Math.round(Math.random()*1000)},
+	                {name: '福建',value: Math.round(Math.random()*1000)},
+	                {name: '贵州',value: Math.round(Math.random()*1000)},
+	                {name: '广东',value: Math.round(Math.random()*1000)},
+	                {name: '青海',value: Math.round(Math.random()*1000)},
+	                {name: '西藏',value: Math.round(Math.random()*1000)},
+	                {name: '四川',value: Math.round(Math.random()*1000)},
+	                {name: '宁夏',value: Math.round(Math.random()*1000)},
+	                {name: '海南',value: Math.round(Math.random()*1000)},
+	                {name: '台湾',value: Math.round(Math.random()*1000)},
+	                {name: '香港',value: Math.round(Math.random()*1000)},
+	                {name: '澳门',value: Math.round(Math.random()*1000)}
+	            ]
+	        },
+	        {
+	            name: '产品2',
+	            type: 'map',
+	            mapType: 'china',
+	            itemStyle:{
+	                normal:{label:{show:true}},
+	                emphasis:{label:{show:true}}
+	            },
+	            data:[
+	                {name: '北京',value: Math.round(Math.random()*1000)},
+	                {name: '天津',value: Math.round(Math.random()*1000)},
+	                {name: '上海',value: Math.round(Math.random()*1000)},
+	                {name: '重庆',value: Math.round(Math.random()*1000)},
+	                {name: '河北',value: Math.round(Math.random()*1000)},
+	                {name: '安徽',value: Math.round(Math.random()*1000)},
+	                {name: '新疆',value: Math.round(Math.random()*1000)},
+	                {name: '浙江',value: Math.round(Math.random()*1000)},
+	                {name: '江西',value: Math.round(Math.random()*1000)},
+	                {name: '山西',value: Math.round(Math.random()*1000)},
+	                {name: '内蒙古',value: Math.round(Math.random()*1000)},
+	                {name: '吉林',value: Math.round(Math.random()*1000)},
+	                {name: '福建',value: Math.round(Math.random()*1000)},
+	                {name: '广东',value: Math.round(Math.random()*1000)},
+	                {name: '西藏',value: Math.round(Math.random()*1000)},
+	                {name: '四川',value: Math.round(Math.random()*1000)},
+	                {name: '宁夏',value: Math.round(Math.random()*1000)},
+	                {name: '香港',value: Math.round(Math.random()*1000)},
+	                {name: '澳门',value: Math.round(Math.random()*1000)}
+	            ]
+	        },
+	        {
+	            name: '产品3',
+	            type: 'map',
+	            mapType: 'china',
+	            itemStyle:{
+	                normal:{label:{show:true}},
+	                emphasis:{label:{show:true}}
+	            },
+	            data:[
+	                {name: '北京',value: Math.round(Math.random()*1000)},
+	                {name: '天津',value: Math.round(Math.random()*1000)},
+	                {name: '上海',value: Math.round(Math.random()*1000)},
+	                {name: '广东',value: Math.round(Math.random()*1000)},
+	                {name: '台湾',value: Math.round(Math.random()*1000)},
+	                {name: '香港',value: Math.round(Math.random()*1000)},
+	                {name: '澳门',value: Math.round(Math.random()*1000)}
+	            ]
+	        }
+	    ]
+	};
+                    
+        var ecConfig= require('echarts/config');  
+        myChart.on(ecConfig.EVENT.MAP_SELECTED,function (param){
+           varselected=param.selected;
+           alert("160==========="+varselected);
+           varmapSeries=option.series[0];  
+            vardata= [];  
+            varlegendData= [];  
+            varname;  
+            for (varp=0,len=mapSeries.data.length; p<len; p++) {  
+                name=mapSeries.data[p].name;  
+                mapSeries.data[p].selected=selected[name];  
+                if (selected[name]) {  
+                    alert(name);//这里只是简单的做一个事例说明，弹出用户所选的省，如需做其他的扩展，可以在这里边添加相应的操作   
+                }  
+            }  
+        });                  
+        myChart.setOption(option);
+    }  
+);  
+</script>
+</html>

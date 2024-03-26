@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!-- 需要在　“控制面板”->“管理工具”->“数据源(ODBC)”->“系统DNS” 中新建系统级的ODBC数据源 -->
+<Params>
+	<Param>
+		<!-- 数据源别名 -->
+		<dbAlias>defaultDB</dbAlias>
+		
+		<!-- 注册表左目录"HKEY_LOCAL_MACHINE\SOFTWARE\ODBC\ODBC.INI"下的子键名称 -->
+		<SubKey>DSS</SubKey>
+		
+		<!-- 右边子键的描述 -->
+		<Description>DSS</Description>
+		
+		<!-- 右边子键的连接驱动 -->
+		<Driver>C:\Windows\system32\SQLSRV32.dll</Driver>
+		
+		<!-- 右边子键的连接用户名 -->
+		<LastUser>XCDSS</LastUser>
+		
+		<!-- 右边子键的连接用户密码 -->
+		<pwd>XCDSS</pwd>
+		
+		<!-- 右边子键的连接服务名或IP地址 -->
+		<Server>DSS</Server>
+		</Param>
+</Params>

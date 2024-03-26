@@ -1,0 +1,60 @@
+https://blog.csdn.net/weixin_45203607/article/details/125895112
+
+1.Chromedriver下载地址：
+http://chromedriver.storage.googleapis.com/index.html
+http://npm.taobao.org/mirrors/chromedriver/
+两个地址都可以下载，根据自己的chrome浏览器的版本选择下载即可(一定要和自己游览器版本一致,否则没法使用)
+chrome查看版本 -设置-帮助-关于Google Chrome 没找到那么下载你当前游览器版本的临近最新版就行
+
+依赖
+ <!--        爬虫-解析html页面-->
+        <dependency>
+            <groupId>org.jsoup</groupId>
+            <artifactId>jsoup</artifactId>
+            <version>1.11.3</version>
+        </dependency>
+        <dependency>
+            <groupId>com.squareup.okhttp3</groupId>
+            <artifactId>okhttp</artifactId>
+            <version>3.10.0</version>
+        </dependency>
+
+ <!--  selenium-->
+<dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <!--            目前来说就3.141.59这个版本好使高版本会有问题-->
+            <version>3.141.59</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>22.0</version>
+        </dependency>
+
+
+资料
+1.Java-Selenium自动化教程
+https://blog.csdn.net/weixin_45203607/article/details/125895112
+2.Java-JSONP(爬虫)
+https://huanmin.blog.csdn.net/article/details/125831123
+3.selenium+Java处理iframe切换
+https://blog.csdn.net/weixin_44169484/article/details/119722323
+4.window切换
+https://www.freesion.com/article/5796557924/
+5.webdriver java等待_selenium（Java）WebDriverWait等待机制
+https://wenku.baidu.com/view/b57c381640323968011ca300a6c30c225901f0e3.html
+https://blog.csdn.net/weixin_36341500/article/details/114131170
+6.
+
+
+// 谷歌驱动路径
+String chromeDriverPath = this.getClass().getResource("/").getPath() + "driver" + File.separator + "chromedriver.exe";
+// ChromeOptions
+ChromeOptions chromeOptions = new ChromeOptions();
+// 设置后台静默模式启动浏览器
+chromeOptions.addArguments("--headless");
+// 谷歌驱动生成
+WebDriver driver = new ChromeDriver(chromeOptions);
+-----------------------------------

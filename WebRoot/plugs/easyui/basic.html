@@ -1,0 +1,380 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Basic DataGrid - jQuery EasyUI Demo</title>
+	<link rel="stylesheet" type="text/css" href="themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="themes/icon.css">
+	<script type="text/javascript" src="../jquery/1.10.2/jquery.min.js"></script>
+	<script type="text/javascript" src="1.3.6/jquery.easyui.min.js"></script>
+</head>
+<body>
+	<h2 onClick="evenTest()">Basic DataGrid</h2>
+	<p>The DataGrid is created from markup, no JavaScript code needed.</p>
+	<div style="margin:20px 0;"></div>
+
+
+<table id="dg" class="easyui-datagrid" style="width:800px;height:auto;" data-options="iconCls: 'icon-edit',	onClickCell:onClickCell,onLoadSuccess:InitData">
+	<thead data-options="frozen:true">
+		<tr>
+			<th field="name1" width="150"　rowspan="2">Col 1</th>
+		</tr>
+	</thead>
+	<thead>
+		<tr>
+			<th rowspan="2" data-options="field:'name2',width:80,align:'right',editor:'text'">Col 2</th>
+			<th colspan="2" align="center" width="150">分组一</th>
+			<th colspan="2" width="150">分组一</th>
+		</tr>
+		<tr>
+			<th field="name3" align="center" width="150">Col 3</th>
+			<th field="name4" width="150">Col 4</th>
+			<th field="name5" width="150">Col 5</th>
+			<th field="name6" width="150">Col 6</th>
+		</tr>
+	</thead>                           
+	<tbody>                            
+		<tr>                           
+			<td id="n1" eletype="text" elename="n1">Data 1</td>
+			<td id="age" eletype="text" elename="age">Data 2</td>
+			<td>Data 3242</td>
+			<td>Data 4</td>
+			<td>Data 5</td>
+			<td>Data 6</td>
+		</tr>
+		<tr>                           
+			<td id="n2" eletype="text" elename="n2">Data 1</td>
+			<td id="pz" eletype="text" elename="pz">期中</td>
+			<td>Data 3</td>
+			<td>Data 4</td>
+			<td>Data 5</td>
+			<td>Data 6</td>
+		</tr>
+		<tr>
+			<td eletype="text">Data 1</td>
+			<td eletype="text" elename="pz">Data 2</td>
+			<td>Data 3</td>
+			<td>Data 4</td>
+			<td>Data 5</td>
+			<td>Data 6</td>
+		</tr>                          
+		<tr>                           
+			<td eletype="text">Data 1</td> 
+			<td eletype="text" elename="pz">Data 2</td>
+			<td>Data 3</td>
+			<td>Data 4</td>
+			<td>Data 5</td>
+			<td>Data 6</td>
+		</tr>
+		<tr>
+			<td eletype="text">Data 1</td> 
+			<td eletype="text" elename="pz">Data 2</td>            
+			<td>Data 3</td>            
+			<td>Data 4</td>            
+			<td>Data 5</td>            
+			<td>Data 6</td>            
+		</tr>                          
+		<tr>                           
+			<td eletype="text">Data 1</td> 
+			<td eletype="text" elename="pz">Data 2</td>            
+			<td>Data 3</td>
+			<td>Data 4</td>
+			<td>Data 5</td>
+			<td>Data 6</td>
+		</tr>                          
+		<tr>                           
+			<td eletype="text">Data 1</td> 
+			<td eletype="text" elename="pz">Data 2</td>
+			<td>Data 3</td>            
+			<td>Data 4</td>            
+			<td>Data 5</td>            
+			<td>Data 6</td>            
+		</tr>
+		<tr>
+			<td eletype="text">Data 1</td> 
+			<td eletype="text" elename="pz">Data 2</td>            
+			<td>Data 3</td>            
+			<td>Data 4</td>            
+			<td>Data 5</td>            
+			<td>Data 6</td>            
+		</tr>                          
+		<tr>                           
+			<td eletype="text">Data 1</td> 
+			<td eletype="text" elename="pz">Data 2</td>
+			<td>Data 3</td>
+			<td>Data 4</td>
+			<td>Data 5</td>
+			<td>Data 6</td>
+		</tr>                          
+		<tr>                           
+			<td eletype="text">Data 1</td>
+			<td eletype="text" elename="pz">Data 2</td>
+			<td>Data 3</td>
+			<td>Data 4</td>
+			<td>Data 5</td>
+			<td>Data 6</td>            
+		</tr>                          
+		<tr>                           
+			<td eletype="text">Data 1</td>
+			<td eletype="text" elename="pz">Data 2</td>
+			<td>Data 3</td>
+			<td>Data 4</td>
+			<td>Data 5</td>
+			<td>Data 6</td>
+		</tr>                          
+		<tr>                           
+			<td eletype="text">Data 1</td> 
+			<td eletype="text" elename="pz">Data 2</td>            
+			<td>Data 3</td>            
+			<td>Data 4</td>            
+			<td>Data 5</td>            
+			<td>Data 6</td>            
+		</tr>                          
+		<tr>                           
+			<td eletype="text">Data 1</td> 
+			<td eletype="text" elename="pz">Data 2</td>            
+			<td>Data 3</td>            
+			<td>Data 4</td>            
+			<td>Data 5</td>            
+			<td>Data 6</td>            
+		</tr>                          
+	</tbody>                           
+</table>
+
+</body>
+	<script type="text/javascript">
+		var cellbgcolor = "#FFF398";//单元格背景色
+		var delbgcolor = "";//删除背景色
+		document.onselectstart = function(){return false;}; //取消字段选择功能
+		var keyEven = 0;//这里是按下键盘后的事件
+		var dgFields;//这里是表的列头信息
+		var selCell=[];//选中的单元格,这里是为了选中区块用到,长度为四时选中存储的是第一次点击的行列值,和第二个点的行列值 var C=new Array(3);;//arr.push(6); arr[arr.length] = 6;
+		
+		$.extend($.fn.datagrid.methods, {
+			editCell: function(jq,param){
+				return jq.each(function(){
+					var opts = $(this).datagrid('options');
+					var fields = $(this).datagrid('getColumnFields',true).concat($(this).datagrid('getColumnFields'));
+					for(var i=0; i<fields.length; i++){
+						var col = $(this).datagrid('getColumnOption', fields[i]);
+						col.editor1 = col.editor;
+						if (fields[i] != param.field){
+							col.editor = null;
+						}
+					}
+					
+					$(this).datagrid('beginEdit', param.index);
+					for(var i=0; i<fields.length; i++){
+						var col = $(this).datagrid('getColumnOption', fields[i]);
+						col.editor = col.editor1;
+					}
+				});
+			}
+		});
+		
+		/**
+		*这里是表格加载成功后执行方法
+		*/
+		function InitData(){
+			dgFields = $('#dg').datagrid('getColumnFields',true).concat($('#dg').datagrid('getColumnFields',false));
+		}
+		
+		var editIndex = undefined;
+		function endEditing(){
+			if (editIndex == undefined){return true}
+			if ($('#dg').datagrid('validateRow', editIndex)){
+				$('#dg').datagrid('endEdit', editIndex);
+				editIndex = undefined;
+				return true;
+			} else {
+				return false;
+			}
+		}
+		
+		function onClickCell(index, field, value){
+			if(keyEven==16){//按下16=shift,17=ctrl的情况
+				if(selCell.length<4){
+					selCell.push(index);//添加行的索引
+					selCell.push(getSubIndex(field,dgFields));//添加列的索引
+					if(selCell.length==4) changeBlockColor("dg",cellbgcolor);//修改块的颜色
+					else changeCellColor("dg",cellbgcolor);//修改单元格的颜色
+				}
+				$('#dg').datagrid('selectRow', index);//这里是取消选中行的代码
+				return false;
+			}else{
+				changeBlockColor("dg",delbgcolor);//这里要取消选中块的颜色
+				selCell = [];//清空选中的单元格
+				if(endEditing()){
+					$('#dg').datagrid('selectRow', index).datagrid('editCell',{index:index,field:field});
+					editIndex = index;
+				}
+			}
+		}
+
+		function evenTest(){
+			var rObj = new Array();
+			var eleid = "";//jsp页面的元素ID号(必须显现的写出)
+			var eletype = "";
+			$("body [id]").each(function(){//这里是用jquery查找页面上所有包括ID的元素
+				eleid = $(this).attr("id");
+				eletype = $(this).attr("eletype");
+				var o = new Object();
+				o.name = $(this).attr("elename");//这里取的是字段名
+				//alert("195============="+o.name+"=="+eleid);
+				rObj.push(o);//收集选中项
+			});
+			return rObj;
+		}
+		
+		/**
+		*设置对象的背景色，注意：这里把整个样式都删除了，有待进一步改进
+		*o:被设置的对角
+		*color:背景颜色,如果为空,则表示删除背景
+		*/
+        function setObjStyle(o,color) {//这是设置单元格样式的情况
+			if(color){
+				$(o).css({
+					"background-color":color
+				}); 			
+			}else $(o).removeAttr("style");//这里是删除样式
+        }
+
+		/**
+		*设置easyui-datagrid表格中所选列的颜色
+		*fld:选中列的字段
+		*bgColor:列的背景色
+		*/
+		function changeColColor(dgid,fld,bgColor){
+			var panel = $('#'+dgid).datagrid('getPanel');   
+			var tr = panel.find('div.datagrid-body tr');
+			tr.each(function(){   
+				var td = $(this).children('td[field="'+fld+'"]');
+				setObjStyle(td,bgColor);     
+			});   
+		}
+
+		/**
+		*设置easyui-datagrid表格中表格块的颜色
+		*bgColor:列的背景色
+		*/
+		function changeBlockColor(dgid,bgColor){
+			var panel = $('#'+dgid).datagrid('getPanel');   
+			var startrow = selCell[0],startcol=selCell[1];
+			var endrow = selCell[2],endcol=selCell[3];
+			if(startrow>endrow){
+				startrow = selCell[2];
+				endrow = selCell[0];
+			}
+			if(startcol>endcol){
+				startcol=selCell[3];
+				endcol = selCell[1];
+			}
+			for(var i=startrow;i<=endrow;i++){
+				var tr = panel.find('div.datagrid-body tr[datagrid-row-index="'+i+'"]');
+				for(var k=startcol;k<=endcol;k++){//
+					var td = $(tr).children('td[field="'+dgFields[k]+'"]');
+					setObjStyle(td,bgColor);
+				}
+			}
+		}
+
+		/**
+		*设置easyui-datagrid表格中表格块的颜色
+		*bgColor:列的背景色
+		*/
+		function changeCellColor(dgid,bgColor){
+			var panel = $('#'+dgid).datagrid('getPanel');   
+			var curRow = selCell[0],curCol=selCell[1];
+			var tr = panel.find('div.datagrid-body tr[datagrid-row-index="'+curRow+'"]');//
+			var td = $(tr).children('td[field="'+dgFields[curCol]+'"]');
+			setObjStyle(td,bgColor);
+		}
+
+		$(document).keydown(function (event) {
+	        //alert(event.keyCode);16=shift键,37=左方向,39=右方向键
+			keyEven = event.keyCode;
+        });
+
+		$(document).keyup(function (event){
+	        keyEven = 0;
+        });
+
+//===========下面是重写了==源出处==https://www.cnblogs.com/liuqiyun/p/8618121.html==============================
+		var cellDefView = $.extend({}, $.fn.datagrid.defaults.view, {//html中的table数据加载easyui-datagrid成功反写,可以随便定义
+		    renderRow:function (target, fields, frozen, rowIndex, rowData) {
+		    	//alert(JSON.stringify($(target).datagrid('getData').atts));//这个很好用哦
+		    	var rowAtts = $(target).datagrid('getData').atts[rowIndex];//atts变量是在datagrid.parseData中添加的
+		        var cc = [];
+		        var fld="";//这里是
+		        for(var i in fields){//这里是单元格数据的加载
+		        	fld = fields[i];
+		        	cc.push('<td field="'+fld+'">');//这里是加入行列的标识 注意,不能用列号,列号会受固定列的影响
+		        	cc.push('<div style="height:auto;" class="datagrid-cell datagrid-cell-c2-'+fld+'" '+rowAtts[fld]+'>'+rowData[fld]+'</div>');
+		        	cc.push('</td>');
+		        }
+		        return cc.join('');
+		    }
+		});
+
+		$(function () {
+		    $('#dg').datagrid({
+		        view: cellDefView
+		    });
+		});
+
+	//============================================================================
+	$.fn.datagrid.parseData = function(target){//这里是解析html的table数据重新写入
+		var t = $(target);
+		var data = {
+			total:0, rows:[], atts:[]//这个是新加的变量,主要是为了保存单元格的属性用到,单元格的属性存储方式是键值对的方式,键是列名,值是列属性
+		};
+		var fields = t.datagrid('getColumnFields',true).concat(t.datagrid('getColumnFields',false));
+		t.find('tbody tr').each(function(){
+			data.total++;
+			var row = {};//行数据的表格数据
+			var att = {};//单元格的白名单属性
+			$.extend(row, $.parser.parseOptions(this,['iconCls','state']));
+			var ob;//这里是单元格即td数据
+			for(var i=0; i<fields.length; i++){
+				ob = $(this).find('td:eq('+i+')');//这里是被查找到的单元格对象,即td对象
+				row[fields[i]] = ob.html();
+				att[fields[i]] = _getObjAttr(ob);//这里是添加的的属性
+			}
+			data.rows.push(row);//单元格的内容
+			data.atts.push(att);//这里是添加单元格即td属性
+		});
+		return data;
+	};
+
+	/**
+	*传入节点对象,取得当前节点的所有属性
+	*/
+	function _getObjAttr(node){
+		var attstr='';//
+		var attsList = ["eletype","elename"];//单元格属性白名单
+		var fld;
+		for (var i in attsList){
+			fld = attsList[i];
+			if(node.attr(fld)){
+				attstr += ' '+fld+'="'+node.attr(fld)+'"';
+			}
+		}	
+		return attstr;
+	}
+
+	/**
+	*返回子串在集合中的索引
+	*/
+	function getSubIndex(str,strArr){
+		var n=-1;
+		for(var i in strArr){
+			if(str==strArr[i]){
+				n=i;
+				break;
+			}
+		}
+		return n;
+	}
+
+	</script>
+</html>

@@ -1,0 +1,38 @@
+@charset "utf-8";
+
+.wrap-menu {
+	width: 100%; background: #F6F6F6; font: 14px 'Microsoft YaHei','微软雅黑';
+	//overflow-y:auto;
+	//overflow-x:hidden;
+}
+
+.wrap-menu ul {
+	list-style: none;margin: 0;	padding: 0;
+}
+
+.wrap-menu ul li {
+	text-indent: 1em;/**缩进的宽度*/
+	white-space: nowrap;
+}
+
+.wrap-menu ul li h2 {
+	cursor: pointer; height: 100%; width: 100%;	margin: 0 0 1px 0; font: 14px '微软雅黑', Arial;
+	color: #000000;/**一级菜单字色*/
+	background: F8FFD6;/**E5F0FF一级菜单背境色#F8FFD6*/
+}
+
+.wrap-menu ul li a {
+	display: block;	outline: none;	height: 25px;line-height: 25px;	margin: 1px 0;	color: #1A385C;	text-decoration: none;
+}
+
+.wrap-menu ul li .arrow {
+	margin-right: 10px;	margin-left: -17px;	margin-top: 9px; width: 7px; height: 7px; background: url(../images/arrow.gif) no-repeat; border: none;
+}
+
+.wrap-menu ul li img.unfold {
+	background-position: 0 -9px;
+}
+
+.wrap-menu ul li a:hover {
+	background-color: #ccc;	background-image: none;
+}

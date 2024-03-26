@@ -1,0 +1,58 @@
+﻿<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>Highcharts_漏斗图</title>
+		<script type="text/javascript" src="../js/jquery/1.9.1/jquery.min.js"></script>	
+		<script type="text/javascript" src="../js/highcharts.js"></script>
+		<script type="text/javascript" src="../js/modules/funnel.js"></script>
+		<script type="text/javascript" src="../js/modules/exporting.js"></script>
+	</head>
+	<body>
+		<div id="container" style="min-width: 410px; max-width: 600px; height: 400px; margin: 0 auto"></div>
+	</body>
+		<script type="text/javascript">
+			$(function () {
+			    
+			    $('#container').highcharts({
+			        chart: {
+			            type: 'funnel'
+			            //,marginRight: 100
+			        },
+			        title: {
+			            text: 'Sales funnel'
+			            //,x: -50
+			        },
+			        plotOptions: {
+			            series: {
+			                dataLabels: {
+			                    enabled: true,
+			                    format: '<b>{point.name}</b> ({point.y:,.0f})',
+			                    color: 'black',
+			                    softConnector: true
+			                },
+			                neckWidth: '30%',
+			                neckHeight: '25%'
+			                
+			                //-- Other available options
+			                // height: pixels or percent
+			                // width: pixels or percent
+			            }
+			        },
+			        legend: {
+			            enabled: true
+			        },
+			        series: [{
+			            name: 'Unique users',
+			            data: [
+			                {name:'Website visits',y:15654},
+			                {name:'Downloads',     y:  4064},
+			                {name:'Requested price list',y: 1987},
+			                {name:'Invoice sent',  y:  976},
+			                {name:'Finalized',    y:846}
+			            ]
+			        }]
+			    });
+			});
+		</script>	
+</html>

@@ -1,0 +1,206 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html>
+  <head>
+    <title>TableField.html</title>
+	
+    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+    <meta http-equiv="description" content="this is my page">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">    
+    <!--<link rel="stylesheet" type="text/css" href="./styles.css">-->
+    
+     <link rel="stylesheet" type="text/css" href="jquery-easyui-1.3.6/themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="jquery-easyui-1.3.6/themes/icon.css">
+	<script type="text/javascript" src="jquery-easyui-1.3.6/jquery.min.js"></script> 
+	<script type="text/javascript" src="jquery-easyui-1.3.6/jquery.easyui.min.js"></script>
+
+  </head>
+  
+  <body>
+    <div id="cc" class="easyui-layout" style="width:550px;height:610px;margin:0 auto">   
+	    <div data-options="region:'north',title:' 插入更新 '" collapsible="false" style="height:auto;">
+	    	<table style="margin: 0 auto;text-align: right">	    	
+		    	<tr><td ><label >步骤名称</label></td> 
+		    		<td><input class="easyui-textbox"  ></td>
+		    	</tr>	   			
+	   			<tr><td><label >数据库连接</label></td> 
+		   			<td><select id="select" class="easyui-combobox" name="dept" style="width:175px;">   
+					    <option value="aa">database1</option>   
+					    <option>bitem2</option>					   
+						</select>
+					</td> 
+		   			<td><a  class="easyui-linkbutton"  >
+		   			编辑</a></td> 
+		   			<td><a  class="easyui-linkbutton" onclick="skip()">
+		   			新建</a></td>
+	   			</tr>
+	   			<tr><td><label style="">目标模式</label></td> 	
+		   			<td><input class="easyui-textbox"  ></td> 
+		   			<td><a  class="easyui-linkbutton" >浏览</a></td>
+	   			</tr>	   			
+	   			<tr><td><label style="">目标表</label></td> 
+		   			<td><input class="easyui-textbox"></td> 
+		   			<td><a  class="easyui-linkbutton" >浏览</a></td>
+	   			</tr> 
+	   			<tr><td><label style="">提交记录数量</label></td> 
+	   			<td><input class="easyui-textbox"  ></td></tr>
+	   			<tr><td>不执行任何更新:</td> 
+	   				<td style="text-align:left">	<input type="checkbox" > </td>
+	   			</tr>
+   			</table>
+	    </div>   
+	    <div data-options="region:'south',title:'更新字段 ',split:true" collapsible="false" style="height:230%;">
+	    	<table  id ="down" class="easyui-datagrid" style="width:auto;height:170px; " 
+				data-options="
+					singleSelect: true,
+					toolbar: '#end',
+					url: 'jquery-easyui-1.3.6/demo/datagrid/datagrid_data1.json',
+					method: 'get',
+					onClickRow: onClick">
+				<thead>   
+			        <tr> 
+			        	<th data-options="field:'Idfield',width:40">#^</th>  
+			            <th data-options="field:'tablefield',editor:'text',width:200">表字段</th>   
+			            <th data-options="field:'streamfield',editor:'text',width:400">流字段</th>   
+			        </tr>   
+			    </thead> 
+			</table>
+			<a  class="easyui-linkbutton" data-options="iconCls:'icon-search'" >help</a>
+			<a  class="easyui-linkbutton"   >确定</a>
+			<a  class="easyui-linkbutton"   >取消</a>		 
+			<a  class="easyui-linkbutton"  >SQL</a>
+			<a  class="easyui-linkbutton" style="float: right" >获取和更新字段</a>
+			<div id="end" style="height:auto">
+				<a href = "javascript:void(0)" class="easyui-linkbutton" 
+				onclick="append('#down')">新增</a>
+				<a href = "javascript:void(0)" class="easyui-linkbutton" 
+				onclick="removeit('down')">删除</a>
+				<a href = "javascript:void(0)" class="easyui-linkbutton" 
+				onclick="accept('#down')">保存</a>
+				<a href = "javascript:void(0)" class="easyui-linkbutton"  
+				onclick="reject('#down')">重置</a>
+				<a href = "javascript:void(0)" class="easyui-linkbutton"  
+				onclick="getChanges('#down')">查询更新</a>
+			</div>
+			
+	    </div>      
+	    <div data-options="region:'center',title:'用来查询的关键字',split:true" style=" width:350px;">
+	    	<table id = "dg" class="easyui-datagrid" style="width:auto;height:180px"
+	    		data-options="
+					singleSelect: true,
+					toolbar: '#tb',
+					url: 'jquery-easyui-1.3.6/demo/datagrid/datagrid_data1.json',
+					method: 'get',
+					onClickRow: onClickRow">    
+			    <thead>   
+			        <tr>
+			        	<th data-options="field:'code',width:20">ID</th>   
+			            <th data-options="field:'code1',width:100,editor:'text'">表字段</th>   
+			            <th data-options="field:'code2',width:150,editor:'text'">比较符</th>   
+			            <th data-options="field:'code3',width:400,editor:'text'">流里的字段1</th>   
+			        </tr>   
+			    </thead>     
+			</table>		   
+			<div id="tb" style="height:auto">
+				<a href = "javascript:void(0)" class="easyui-linkbutton"  
+				onclick="append('#dg')">新增</a>
+				<a href = "javascript:void(0)" class="easyui-linkbutton"  
+				onclick="removeit('dg')">删除</a>
+				<a href = "javascript:void(0)" class="easyui-linkbutton"  
+				onclick="accept('#dg')">保存</a>
+				<a href = "javascript:void(0)" class="easyui-linkbutton"  
+				onclick="reject('#dg')">重置</a>
+				<a href = "javascript:void(0)" class="easyui-linkbutton"  
+				onclick="getChanges('#dg')">查询更新</a>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+		function skip(){
+			var b="2";	//测试
+			var myselect = document.getElementById("select");
+			var index = myselect.selectedIndex;
+			var databasename = myselect.options[index].text;	//获取选中的下拉框的文本
+			
+			alert(databasename);
+			window.location.href='http://localhost:8080/Test/Conndatabase.html?name='+databasename;
+		}
+		
+		var editIndex = undefined;
+		function endEditing(){
+			if (editIndex == undefined){return true}
+			if ($('#dg').datagrid('validateRow', editIndex)){
+								
+				$('#dg').datagrid('endEdit', editIndex);
+				editIndex = undefined;
+				return true;
+			} else {
+				return false;
+			}			
+		}
+		function onClickRow(index){
+			if (editIndex != index){
+				if (endEditing()){
+					$('#dg').datagrid('selectRow', index)
+							.datagrid('beginEdit', index);
+					editIndex = index;
+				} else {
+					$("#dg").datagrid('selectRow', editIndex);
+				}
+			}			
+		}
+		function append(index){
+			if (endEditing()){
+				$(index).datagrid('appendRow',{status:'P'});
+				editIndex = $(index).datagrid('getRows').length-1;
+				$(index).datagrid('selectRow', editIndex)
+						.datagrid('beginEdit', editIndex);
+			}
+		}
+		function removeit(index){
+			if (editIndex == undefined){return}
+			$("#"+index).datagrid('cancelEdit', editIndex)
+					.datagrid('deleteRow', editIndex);
+			editIndex = undefined;
+		}
+		function accept(index){
+			if (endEditing()){
+				$(index).datagrid('acceptChanges');
+			}
+		}
+		function reject(index){
+			$(index).datagrid('rejectChanges');
+			editIndex = undefined;
+		}
+		function getChanges(index){
+			var rows = $(index).datagrid('getChanges');
+			alert(rows.length+' rows are changed!');
+		}
+/*-----------------*/	
+		
+		function endEditing1(){
+			if (editIndex == undefined){return true}
+			if ($('#down').datagrid('validateRow', editIndex)){
+								
+				$('#down').datagrid('endEdit', editIndex);
+				editIndex = undefined;
+				return true;
+			} else {
+				return false;
+			}
+		}
+		function onClick(index){
+			
+			if (editIndex != index){
+				if (endEditing1()){
+					$('#down').datagrid('selectRow', index)
+							.datagrid('beginEdit', index);
+					editIndex = index;
+				} else {
+					$('#down').datagrid('selectRow', editIndex);
+				}
+			}
+		}	
+
+	</script>
+  </body>
+</html>

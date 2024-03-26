@@ -1,0 +1,119 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>基础横道图</title>
+		<script type="text/javascript" src="../../jquery/1.10.2/jquery.min.js"></script>
+		<script type="text/javascript" src="../js/highcharts.js"></script>
+		<script type="text/javascript" src="../js/modules/exporting.js"></script>
+		<script type="text/javascript" src="../js/plugins/dragLegend.js"></script>
+		<script type="text/javascript" src="../js/plugins/customEvents.js"></script>		
+	</head>
+	<body>
+		<div id="container"	style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+	</body>
+	
+	
+	<script type="text/javascript">
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+			$(function () {
+			        $('#container').highcharts({
+			            chart: {
+			                type: 'bar'
+			            },
+			            title: {
+			                text: '基础横道图',
+				            events: {
+				                click: function () {
+				                	alert('26');
+				                   // setChart(chart);
+				                }
+				            }			                
+			            },
+			            /**
+			            subtitle: {
+			                text: 'Source: Wikipedia.org'
+			            },*/
+			            xAxis: {
+			                categories: ['Africa', 'America', 'Asia', 'Europe', 'Oceania']
+			            },
+			            yAxis: {
+			                min: 0,
+			                title: {
+			                    text: 'Population (millions)',
+			                    align: 'high'
+			                },
+			                labels: {
+			                    overflow: 'justify'
+			                }
+			            },
+			            tooltip: {
+			                valueSuffix: ' millions'
+			            },
+			            plotOptions: {
+			                bar: {
+			                    dataLabels: {//条形图的值标签
+			                        enabled: true
+			                    }
+			                }
+			            },
+			            legend: {
+			                layout: 'vertical',
+			                align: 'right',
+			                verticalAlign: 'top',
+			                x: -40,
+			                y: 70,
+			                floating: true,
+			                borderWidth: 1,
+			                backgroundColor: '#FFFFFF',
+			                /**如果放开则可以自由拖动*/
+			                title: {
+				                text: '::图例'
+				            },
+				            
+			                draggable: true,
+			                shadow: true
+			            },
+			            series: [{
+			                name: 'Year 1800',
+			                data: [107, 31, 635, 203, 2]
+			            }, {
+			                name: 'Year 1900',
+			                data: [133, 156, 947, 408, 6]
+			            }, {
+			                name: 'Year 2008',
+			                data: [973, 914, 4054, 732, 34]
+			            }]
+			        });
+			    });
+			    
+			    
+			//根据相关图表参数重绘highcharts图表
+			//function setChart(name, categories, data, color) {
+			function setChart(chart) {
+				 //动态修改Categories
+				//chart.xAxis[0].setCategories(categories, false);
+				 //移除之前序列 如果有多个可以用for逐个移除
+				 chart.series[2].remove(false);
+				 //添加新的序列
+				 chart.addSeries({
+					 name: name,
+					 data: [973, 914, 854, 832, 834],
+					 color: color || 'white'
+				 }, false);
+				 //重绘图表
+				 chart.redraw();
+			}	    
+		</script>
+</html>

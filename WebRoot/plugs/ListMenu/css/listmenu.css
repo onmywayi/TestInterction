@@ -1,0 +1,15 @@
+@charset "utf-8";
+
+.leftbar {background: #ebebeb;float: left;left: 0;top: 0;/**如果是在同一个页面，则要修改为50px*/
+	width: 100%;
+	/** width: 220px; height:580px auto; min-height:580px; padding:2px; margin:50px auto;*/
+}
+.leftbar > ul {list-style: none;}
+.leftbar .menu-one > li {width:100%; height: auto; overflow: hidden; border-top: 1px solid #95B8E7;}
+.leftbar .menu-one > li.firstChild {border: 0;}
+.leftbar .menu-one .header {height: 35px; background: #E0ECFF; line-height: 34px; text-indent: 15px; cursor:pointer;}
+.leftbar .menu-one .header:hover,
+.leftbar .menu-one .menuOne-current {background: #CDCDCD;}
+.leftbar .menu-one .header > span {display: block;}
+.leftbar .menu-one .header .txt {color: #2553A0;text-align:left;}
+.leftbar .menu-one .header .arrow {float: left; width: 35px; height: 35px; background:no-repeat right center;}

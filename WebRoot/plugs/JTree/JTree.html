@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>JSON</title>
+  <link rel="stylesheet" href="css/jtree.css" type="text/css"></link>
+  <script type="text/javascript" src="../jquery/1.10.2/jquery.min.js"></script>
+  <script type="text/javascript" src="jtree.js"></script>
+</head>
+ <body>
+	<div class="wrap-menu">
+	</div>
+	<script>
+		var testMenu=[
+		    {
+		        "name": "level 1",
+		        "submenu": [{
+		                "name": "level 2",
+		                "url": ""
+		                
+		            },{
+		                "name": "level 2",
+		                "url": ""
+		            }
+		        ]
+		    },
+		    {
+		        "name": "level 1",
+		        "image": "./images/arrow.png",
+		        "submenu": [{
+		                "name": "level 2",
+		                "url": ""
+		            },{
+		                "name": "level 2",
+		                "image": "./images/arrow.png",
+		                "submenu": [{
+		                        "name": "level 3",
+		                        "image": "./images/arrow.png",
+		                        "submenu": [{
+		                                "name": "level 4",
+		                                "image": "./images/arrow.png",
+		                                "url": ""
+		                            }
+		                        ]
+		                    }, {
+		                        "name": "level 3",
+		                        "url": ""
+		                    }
+		                ]
+		            },{
+		                "name": "level 2",
+		                "url": ""
+		            },{
+		                "name": "level 2",
+		                "submenu": [{
+		                        "name": "level 3",
+		                        "submenu": [ {
+		                                "name": "level 4",
+		                                "url": ""
+		                            }, {
+		                                "name": "level 4",
+		                                "submenu": [{
+		                                        "name": "level 5",
+		                                        "url": ""
+		                                    }, {
+		                                        "name": "level 5",
+		                                        "url": ""
+		                                    }
+		                                ]
+		                            }
+		                        ]
+		                    },
+		                    {
+		                        "name": "level 3",
+		                        "url": ""
+		                    }
+		                ]
+		            },
+		            {
+		                "name": "level 2",
+		                "url": ""
+		            }
+		        ]
+		    },
+		    {
+		        "name": "level 1",
+		        "submenu": [{
+		                "name": "level 2",
+		                "url": ""
+		            },{
+		                "name": "level 2",
+		                "url": ""
+		            },{
+		                "name": "level 2",
+		                "url": ""
+		            }
+		        ]
+		    }
+		];
+		new AccordionMenu({menuArrs:testMenu});
+	</script>
+</body>
+</html>

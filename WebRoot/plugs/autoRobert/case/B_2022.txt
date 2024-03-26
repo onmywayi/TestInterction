@@ -1,0 +1,14 @@
+[{"class_nm":"工业月报","url":"http://10.32.9.167/yyaq/login.do","account":"320281_B","pwd":"jy86860455x+",
+ "task":[{taskName:"2022年企业一套表统计(定报)调查制度","taskTime":"2022",
+    "demolist":[
+      {"tabId":"201-1","table_type":"2","isaddReg":"1","demoName":"工业名录库","demoUser":"江阴工业"},
+      {"tabId":"B204-1","table_type":"2","isaddReg":"0","demoName":"B204-1","demoUser":"李振华-工业"},
+      {"tabId":"205-1","table_type":"2","isaddReg":"0","demoName":"P205-1","demoUser":"江阴工业"},
+      {"tabId":"205-2","table_type":"2","isaddReg":"0","demoName":"P205-2","demoUser":"江阴工业"},
+      {"tabId":"205-6","table_type":"2","isaddReg":"0","demoName":"P205-6","demoUser":"江阴工业"},
+      {"tabId":"205-6","table_type":"2","isaddReg":"0","demoName":"P2052-6","demoUser":"江阴工业"},
+      {"tabId":"B203","table_type":"2","isaddReg":"0","demoName":"B203","demoUser":"江阴工业"},
+      {"tabId":"B203-1","table_type":"2","isaddReg":"0","demoName":"B203-1","demoUser":"江阴工业"}
+    ]
+   }]
+ }]

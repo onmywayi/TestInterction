@@ -1,0 +1,161 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">  
+<html>  
+ <head>  
+  <title> New Document </title>  
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<title>jQuery可拖放多列网格布局</title>
+	<link rel="stylesheet" href="../../css/comm.css" type="text/css"></link>
+	<link rel="stylesheet" type="text/css" href="css/jquery.gridster.min.css">
+	<script type="text/javascript" src="../jquery/1.10.2/jquery.min.js"></script>
+	<script type="text/javascript" charset="utf-8" src="js/jquery.gridster.js"></script>
+ </head>  
+    <style>  
+        body{  
+            font-family: Helvetica, arial, sans-serif;  
+            margin:150px auto;  
+            background: #004756;  
+            color: #fff;  
+            font-size: 12px;  
+            width:940px;  
+        }  
+  
+        h1{  
+            padding:10px;  
+            font-size: 38px;  
+        }  
+          
+        ul{  
+            list-style: none;  
+        }  
+          
+        li{  
+            background-color: white;  
+            cursor: pointer;  
+            color:#000;  
+        }  
+    </style>  
+      
+ <script type="text/javascript">  
+                                                          //gridster把每一块称为widget（窗口小部件）  
+    $(document).ready(function(){  
+          
+        gridster = $(".gridster ul").gridster({  
+  
+            //widget_selector: "li",                        //确定哪个元素是widget  
+            widget_margins: [5, 5],                       //margin大小  
+            widget_base_dimensions: [140, 140],           //面积大小  
+  
+            //extra_rows: 0,                              //增加更多的横数确保空隙合适  
+            //extra_cols: 0,                              //增加更多的列数确保空隙合适  
+  
+            //max_size_x: 6,                              //一个widget最大多少列  
+            //max_size_y: 6,                              //一个widget最大多少横  
+  
+            //max_cols: null,                             //最多创建多少列，null表示没有限制  
+            //max_rows: null,                             //最多创建多少横，null表示没有限制  
+            //min_cols: 1,                                //至少创建多少列  
+            //min_rows: 15,                               //至少创建多少横  
+  
+            //autogenerate_stylesheet: true,   //允许通过CSS自动生成，例如：[data-col="1"] { left: 10px; }  
+            //avoid_overlapped_widgets: true,  //不允许widgets加载的时候重叠  
+  
+            //resize.enabled: false,//允许改变大小  
+            //resize.axes: ['both'],      //能通过X,Y轴去改变大小  
+            //resize.handle_class: 'gs-resize-handle',          //把某个class当做改变大小的控件  
+            //resize.handle_append_to: '',//set a valid CSS selector to append resize handles to. If value evaluates to false it's appended to the widget.  
+            //resize.max_size: [Infinity, Infinity],  //改变大小的最大值  
+  
+            helper:'clone',  
+  
+            resize:{  
+                enabled: true  
+            },  
+  
+              
+  
+            /*serialize_params: function($w, wgd) {        //返回序列化后widget的数据  
+                return { col: wgd.col, row: wgd.row, size_x: wgd.size_x, size_y: wgd.size_y }   
+            }*/  
+  
+              
+            //draggable.start: function(event, ui){},          //拖动事件  
+            //draggable.drag: function(event, ui){},  
+            //draggable.stop: function(event, ui){},  
+            //用法：  
+            /*draggable:{  
+                 //handle: 'header',         //设置拖动控件  
+                 start: function(event, ui){  
+                 },  
+                 drag:function(event, ui){  
+                 },  
+                 stop: function(event, ui){  
+                 }  
+            }*/  
+  
+  
+            //collision.on_overlap_start: function(collider_data) { },    //碰撞/交互事件  
+            //collision.on_overlap: function(collider_data) { },  
+            //collision.on_overlap_stop: function(collider_data) { },  
+  
+            //resize.start: function(e, ui, $widget) {},     //改变大小事件  
+            //resize.resize: function(e, ui, $widget) {},  
+            //resize.stop: function(e, ui, $widget) {},  
+          
+        }).data('gridster');  
+  
+         //var gridster = $(".gridster ul").gridster().data('gridster');//获取对象  
+         //alert("row:"+gridster.rows+"--cols"+gridster.cols);  
+  
+         //gridster.add_widget('<li class="new">The HTML of the widget...</li>', 2, 1);//增加一个  
+         //gridster.remove_widget( $('.gridster li').eq(0) ); //删除第4块,0开始算起  
+  
+         //var json = gridster.serialize();  
+         //alert(JSON.stringify(json));  
+  
+         //gridster.disable( );//禁止拖动  
+         //gridster.enable( );  
+  
+        /* gridster.$el   //增加事件
+          .on('mouseenter', '> li', function() {  
+              gridster.resize_widget($(this), 3, 3);  
+          })
+          .on('mouseleave', '> li', function() {  
+              gridster.resize_widget($(this), 1, 1);  
+          });
+        */  
+});  
+  
+</script>  
+ <body>  
+<article>  
+        <h1>GridSter Demo (li)</h1>  
+          
+        <section>  
+        <!--  row:行，col:竖  -->  
+        <div class="gridster">  
+        <ul>  
+            <li data-row="1" data-col="1" data-sizex="1" data-sizey="1" class="gs-w"><1<span class="gs-resize-handle gs-resize-handle-both"></span></li>  
+            <li data-row="2" data-col="1" data-sizex="1" data-sizey="1" class="gs-w">2<span class="gs-resize-handle gs-resize-handle-both"></span></li>  
+            <li data-row="3" data-col="1" data-sizex="1" data-sizey="1" class="gs-w">3<span class="gs-resize-handle gs-resize-handle-both"></span></li>  
+       
+            <li data-row="1" data-col="2" data-sizex="2" data-sizey="1" class="gs-w">4<span class="gs-resize-handle gs-resize-handle-both"></span></li>  
+            <li data-row="2" data-col="2" data-sizex="2" data-sizey="2" class="gs-w">5<span class="gs-resize-handle gs-resize-handle-both"></span></li>  
+       
+            <li data-row="1" data-col="4" data-sizex="1" data-sizey="1" class="gs-w">6<span class="gs-resize-handle gs-resize-handle-both"></span></li>  
+            <li data-row="2" data-col="4" data-sizex="2" data-sizey="1" class="gs-w">7<span class="gs-resize-handle gs-resize-handle-both"></span></li>  
+            <li data-row="3" data-col="4" data-sizex="1" data-sizey="1" class="gs-w">8<span class="gs-resize-handle gs-resize-handle-both"></span></li>  
+       
+            <li data-row="1" data-col="5" data-sizex="1" data-sizey="1" class="gs-w">9<span class="gs-resize-handle gs-resize-handle-both"></span></li>  
+            <li data-row="3" data-col="5" data-sizex="1" data-sizey="1" class="gs-w">10<span class="gs-resize-handle gs-resize-handle-both"></span></li>  
+       
+            <li data-row="1" data-col="6" data-sizex="1" data-sizey="1" class="gs-w">11<span class="gs-resize-handle gs-resize-handle-both"></span></li>  
+            <li data-row="2" data-col="6" data-sizex="1" data-sizey="2" class="gs-w">12<span class="gs-resize-handle gs-resize-handle-both"></span></li>  
+        </ul>  
+        </div>  
+          
+        </section>  
+          
+</article>  
+ </body>  
+</html>

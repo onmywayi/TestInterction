@@ -1,0 +1,26 @@
+@CHARSET "UTF-8";
+
+.table {
+	background-color: #FFdddd;
+	text-decoration: blink;
+	border: 1px solid blue;
+}
+
+.circle {
+	background-color: #ddeeff;
+	border: 1px solid white;
+}
+
+.diamond {
+	fill: #ffddee;
+	stroke: red;
+}
+
+.rectangle {
+	background-color: #FFFFFF;/**图标的背景色*/
+	border-top-color: #FFFFFF;
+}
+.NodeName{/**图标标题的字体设置*/
+	font-family:"Microsoft YaHei","微软雅黑";
+	font:10;
+}

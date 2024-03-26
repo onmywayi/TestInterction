@@ -1,0 +1,25 @@
+引入 <css/prompt.css>和jquery1.72.js，prompt.min.js 其中prompt.min.js必须在 jquery1.72.js之后引入
+调用方式：
+直接按默认打开
+$.Prompt();
+
+设置提示内容
+$.Prompt("欢迎光临本站!");
+
+设置自动关闭时间为4s
+$.Prompt("欢迎光临本站!4S",4000);
+
+设置自动关闭时间为100s,然后在2s后强制关闭
+$.Prompt("欢迎光临本站!2S",100000);
+setTimeout(function(){
+	$.Prompt({close:true});
+},2000);	
+	
+修改默认参数后，不带参数打开
+var def = {
+	content:"欢迎来到A5素材!",
+	time:1000
+}
+$.Prompt(def);
+$.Prompt();
+	

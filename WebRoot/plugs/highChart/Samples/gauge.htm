@@ -1,0 +1,126 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>Highcharts_仪表盘</title>
+		<script type="text/javascript" src="../js/jquery/1.9.1/jquery.min.js"></script>
+		<script type="text/javascript" src="../js/highcharts.js"></script>
+		<script type="text/javascript" src="../js/highcharts-more.js"></script>
+		<script type="text/javascript" src="../js/modules/exporting.js"></script>
+	</head>
+	<body>
+		<div id="container"	style="width: 600px; height: 300px; margin: 0 auto"></div>
+	</body>
+	<script type="text/javascript">
+		$(function () {
+			var colors = ['#07FD04','#FFFF00','#FF7805','#FA0100','#9E004F','#790222']
+			$('#container').highcharts({
+				chart :{
+					renderTo: 'container',
+					type: 'gauge',
+					/**背景相关信息
+					plotBorderWidth: 1,
+					plotBackgroundColor: {//背景色
+						linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
+						stops: [[0, '#FFF4C6'],[0.3, '#FFFFFF'],[1, '#FFF4C6']]
+					},
+					plotBackgroundImage: null,//背景图片
+					*/
+					height: 210
+				},
+				title : {
+					text: '最近24小时空气质量指数趋势(AQI)',
+					y:5,x:-15
+				},
+				pane : [{
+					startAngle: -90,
+					endAngle: 90,
+					background: null,
+					center: ['45%', '100%'],
+					size: 300
+				}], 
+				yAxis : [{
+					// tickLength:0,
+					// minorTickLength:0,
+					min: 0,	max: 500,
+					minorTickPosition: 'inside',
+					tickPosition: 'inside',
+					labels: {//外环的刻度标签
+						rotation: 'auto',
+						distance: 10
+					},
+					plotBands: [{//分区段
+						from: 0,to: 50,
+						color: colors[0],
+						innerRadius: '100%',
+						outerRadius: '65%'
+					},{
+						from: 50,to: 100,color: colors[1],
+						innerRadius: '100%',
+						outerRadius: '65%'
+					},{
+						from: 100,to: 150,color: colors[2],
+						innerRadius: '100%',
+						outerRadius: '65%'
+					},{
+						from: 150,to: 200,color: colors[3],
+						innerRadius: '100%',
+						outerRadius: '65%'
+					},{
+						from: 200,to: 300,color: colors[4],
+						innerRadius: '100%',
+						outerRadius: '65%'
+					},{
+						from: 300,to: 500,color: colors[5],
+						innerRadius: '100%',
+						outerRadius: '65%'
+					}],
+					title: {
+						text: 'AQI',
+						style :{
+							fontSize : '14px',
+							marginTop : '10px'
+						},
+						y: 20
+					}
+				}],
+
+				plotOptions: {
+					gauge: {
+						dataLabels: {
+							enabled: true,
+							y : -20
+						},
+						dial: {//仪表盘指针
+							radius: '80%',
+							rearLength: '0%',
+							backgroundColor: 'silver',
+							borderColor: 'silver',
+							borderWidth: 1,
+							baseWidth: 10,
+							topWidth: 1,
+							baseLength: '30%'
+						}
+					}
+				},
+				tooltip :{
+					formatter: function() {
+						var name = '';
+						if(this.y >= 0 && this.y <=50)	name = "优";
+						else if(this.y > 50 && this.y <= 100)	name = "良";
+						else if (this.y > 100 && this.y <=150)	name = "轻度污染";
+						else if(this.y > 150 && this.y <= 200)	name = "中度污染";
+						else if(this.y > 200 && this.y <= 300)	name = "重度污染";
+						else if(this.y > 300)	name = "严重污染";
+						return '北京市最近24小时空气质量指数趋势(AQI): '+ this.y + ", 空气质量状况：" + name;
+					}
+				},
+				series: [{
+					name : '北京市最近24小时空气质量指数趋势(AQI)',
+					data: [150],
+					yAxis: 0
+				}]
+			});
+			});
+		</script>
+</html>

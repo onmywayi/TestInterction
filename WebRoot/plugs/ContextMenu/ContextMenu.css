@@ -1,0 +1,43 @@
+@charset "UTF-8";
+/*div仿下拉卡的公用样式*/
+.divSelect{
+	position:absolute;
+	display:none;
+	border-top:1px solid #000000;
+	border-left:1px solid #000000;
+	border-right:1px solid #000000;
+	border-bottom:1px solid #000000;
+	border-color:#C0C0C0;
+	
+	font-size:12px ;
+	font-family:'微软雅黑';
+	background-color:#ffffff;
+	color:#000000;
+	z-index:200;
+}
+.divSelect div{
+	letter-spacing:1.5;
+	line-height:20px;
+	border-bottom:1px solid #FFFFFF;
+	border-left:0px solid #FFFFFF;
+	border-right:0px solid #FFFFFF;
+	border-top:1px solid #FFFFFF;
+	padding:0 10 0 10;
+	cursor:default;
+}
+.liFocus{
+	background-color:#104D9C;
+	color:#ffffff;
+}
+.liDefault{
+	background-color:#ffffff;
+	color:#000000;
+}
+
+.line{
+	height:1px;
+	margin:2.5px auto;
+	padding:0px;
+	background-color:#D5D5D5;
+	overflow:hidden;
+}

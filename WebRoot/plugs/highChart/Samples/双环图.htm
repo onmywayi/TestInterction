@@ -1,0 +1,135 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>双层圈图</title>
+		<script type="text/javascript" src="../js/jquery/1.9.1/jquery.min.js"></script>
+		<script type="text/javascript" src="../js/highcharts.js"></script>
+		<script type="text/javascript" src="../js/modules/exporting.js"></script>		
+	</head>
+	<body>
+		<div id="container" style="width: 600px; height: 400px; margin: 0 auto"></div>
+	</body>
+		<script type="text/javascript">
+			$(function () {
+			        var colors = Highcharts.getOptions().colors,
+			            categories = true,//这里设置为true时，X轴会以series数据集中最后一个series的data的name作为X轴
+			            name = 'Browser brands',
+			            data = [{
+			            		name:'MSIE',
+			                    y: 55.11,
+			                    color: colors[0],
+			                    subClass: {
+			                        name: 'MSIE versions',
+			                        data: [{name:'MSIE 6.0',y:10.85}, {name:'MSIE 7.0',y:7.35}, {name:'MSIE 8.0',y:33.06}, {name:'MSIE 9.0',y:2.81}],
+			                        color: colors[0]
+			                    }
+			                }, {
+			            		name:'Firefox',
+			                    y: 21.63,
+			                    color: colors[1],
+			                    subClass: {
+			                        name: 'Firefox versions',
+			                        data: [{name:'Firefox 2.0',y:0.20}, {name:'Firefox 3.0',y:0.83}, {name:'Firefox 3.5',y:1.58}, {name:'Firefox 3.6',y:13.12}, {name:'Firefox 4.0',y:5.43}],
+			                        color: colors[1]
+			                    }
+			                }, {
+			            		name:'Chrome',
+			                    y: 11.94,
+			                    color: colors[2],
+			                    subClass: {
+			                        name: 'Chrome versions',
+			                        data: [{name:'Chrome 5.0',y:0.12}, {name:'Chrome 6.0',y:0.19}, {name:'Chrome 7.0',y:0.12}, {name:'Chrome 8.0',y:0.36}, {name:'Chrome 9.0',y:0.32}, {name:'Chrome 10.0',y:9.91}, {name:'Chrome 11.0',y:0.50}, {name:'Chrome 12.0',y:0.22}],
+			                        color: colors[2]
+			                    }
+			                }, {
+			            		name:'Safari',
+			                    y: 7.15,
+			                    color: colors[3],
+			                    subClass: {
+			                        name: 'Safari versions',
+			                        data: [{name:'Safari 5.0',y:4.55},{name:'Safari 4.0',y:1.42},{name:'Safari Win 5.0',y:0.23},{name:'Safari 4.1',y:0.21},{name:'Safari/Maxthon',y:0.20}, {name:'Safari 3.1',y:0.19},{name:'Safari 4.1',y:0.14}],
+			                        color: colors[3]
+			                    }
+			                }, {
+			            		name:'Opera',
+			                    y: 2.14,
+			                    color: colors[4],
+			                    subClass: {
+			                        name: 'Opera versions',
+			                        data: [{name:'Opera 9.x',y:0.12}, {name:'Opera 10.x',y:0.37}, {name:'Opera 11.x',y:1.65}],
+			                        color: colors[4]
+			                    }
+			                }];
+			    
+			    
+			        // Build the data arrays
+			        var browserData = [];
+			        var versionsData = [];
+			        for (var i = 0; i < data.length; i++) {
+			            // add browser data
+			            browserData.push({
+			                name:  data[i].name,
+			                y: data[i].y,
+			                color: data[i].color
+			            });
+			            // add version data
+			            for (var j = 0; j < data[i].subClass.data.length; j++) {
+			                var brightness = 0.2 - (j / data[i].subClass.data.length) / 5 ;
+			                versionsData.push({
+			                    name: data[i].subClass.data[j].name,
+			                    y: data[i].subClass.data[j].y,
+			                    color: Highcharts.Color(data[i].color).brighten(brightness).get()
+			                });
+			            }
+			        }
+			    
+			        // Create the chart
+			        $('#container').highcharts({
+			            chart: {
+			                type: 'pie'
+			            },
+			            title: {
+			                text: 'Browser market share, April, 2011'
+			            },
+			            yAxis: {
+			                title: {
+			                    text: 'Total percent market share'
+			                }
+			            },
+			            plotOptions: {
+			                pie: {
+			                    shadow: false,
+			                    center: ['50%', '50%']
+			                }
+			            },
+			            tooltip: {
+			        	    valueSuffix: '%'
+			            },
+			            series: [{
+			               // name: 'Browsers',
+			                data: browserData,
+			                size: '60%',
+			                dataLabels: {
+			                    formatter: function() {
+			                        return this.y > 5 ? this.point.name : null;
+			                    },
+			                    color: 'white',
+			                    distance: -30
+			                }
+			            }, {
+			               // name: 'Versions',
+			                data: versionsData,
+			                size: '80%',
+			                innerSize: '60%',
+			               // dataLabels: {
+			               //     formatter: function() {
+			                        //display only if larger than 1
+			               //         return this.y > 1 ? '<b>'+ this.point.name +':</b> '+ this.y +'%'  : null;
+			               //     }
+			               // }
+			            }]
+			        });
+			    });
+		</script>	
+</html>

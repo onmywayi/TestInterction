@@ -1,0 +1,73 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html>
+  <head>
+    <title>SelectPage.html</title>
+	
+    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+    <meta http-equiv="description" content="this is my page">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    
+    <!--<link rel="stylesheet" type="text/css" href="./styles.css">-->
+
+  </head>
+  <style>
+ 	#homepa,#conntype,#connmod,#conf{
+ 		border:1px solid #f1f3f4;
+ 	}
+  </style>
+  <body>
+    <div id = "homepa" style="width:700px;height:600px;background:#fafafa;padding:5px;margin:0 auto">
+    	<label>连接名称：</label><br>
+    		<input type="text" style="width:690px;">
+    	<div  style="float:left;width:350px;">
+    	<p>连接类型:</p>
+    		<div id="conntype" style="width:350px;height:200px;overflow-y: scroll;padding:5px;">
+    			<input type="radio" name="sex" value="boy">Oracle<br>
+    			<input type="radio" name="sex" value="boy">Oracle RBD
+    			<label>Palo MOLAP Server</label><br>
+    			<label>Redshift</label><br>
+    			<label>PostgreSQL</label><br>
+    			<label>SQLit</label><br>
+    			<label>SparkSQL</label><br>
+    			<label>Sybase</label><br>
+    			<label>SYbaseIQ</label><br>
+    			<label>Vertica</label><br>
+    			<label>Vertica 5+</label><br>
+    			<label>Test1</label><br>
+    			<label>Test2</label><br>   			
+    		</div>
+    	<p>连接方式：</p>    	
+    		<div id = "connmod" style="width:340px;height:150px;padding:10px;background:glua;" >	    		
+	    		<label>Native</label><br>
+    			<label>ODBC</label><br> 
+    			<label>OCI</label><br> 
+    			<label>JNDI</label><br> 
+    		</div>
+    	</div>
+    	<div id ="conf" style="float:right;width:300px;padding:5px;margin-top:5px">
+	    	<label>设置</label><br><br>
+	    	<label>主机名称:</label><br>
+	    		<input type="text"><br><br>
+	    	<label>数据库名称:</label><br>
+	    		<input type="text"><br><br>
+	    	<label>数据表空间</label><br>
+	    		<input type="text"><br><br>
+	    	<label>索引表空间</label><br>
+	    		<input type="text"><br><br>
+	    	<label>端口号:</label><br>
+	    		<input type="text" value="1521"><br><br>
+	    	<label>用户名:</label><br>
+	    		<input type="text"><br><br>
+	    	<label>密码:</label><br>
+	    	<input type="text">
+    	</div>
+    	<div style="clear:both;padding:5px;">  
+		    <input type="button" value="测试" style="margin-left:240px;">  
+		    <input type="button" value="特征列表" >
+		    <input type="button" value="浏览" ><br>
+		    <input type="button" value="取消" style="float:right;">
+		    <input type="button" value="确定" style="float:right;margin-right:5px">
+	    </div>    
+    </div>
+	  
+</html>

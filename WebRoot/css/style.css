@@ -1,0 +1,39 @@
+@charset "UTF-8";
+
+  	#btm{ 	  	
+  	background-color:rgba(209,224,239,0.9);
+  	
+    height:180px;
+    width:600px;
+    
+    margin:50px auto;<!-- 外边距：外边距的复合写法1、margin:0px(上) 0px(右) 0px(下) 0px(左)；2、margin:0px(上) 0px(左右) 0px(下)；
+    					3、margin:0px(上下边距)  0px(左右边距)；4、margin:0px(上下左右边距都是0px) -->
+   	padding:20px;
+   	<!-- 内边距 -->  
+   
+  	}
+  	#dierc{
+  	height:120px;
+  	width:210px;  
+  	padding:30px;  	
+  	float:right;
+  	
+  	}
+  	#tp{
+  	height:180px;
+  	width:210px;
+  	float:left;
+  	  	
+  	}
+  	#yhm{
+  	width: 200px; height: 30px; border: 0px;
+  	text-align:center;margin:0 auto;
+  	}
+  	#mima{
+  	width: 200px; height: 30px;
+  	text-align:center;margin:10px auto;
+  	}
+  	#button{
+  	width: 200px; height: 30px; margin:0 auto;border: 2px;
+  	}
+ 
