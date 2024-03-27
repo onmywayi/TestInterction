@@ -103,7 +103,7 @@ public class testconndb {
 
     public static void main(String[] args) {
 
-        System.out.println("uers表数据:"+new testconndb().getlinked());
+        System.out.println("输出uers表数据:"+new testconndb().getlinked());
 //        new testconndb().dataIn("测试1","6665","6");
 //        new testconndb().dataUp("老六","66661","4");
 //        new testconndb().dataDe("1","2","5");
