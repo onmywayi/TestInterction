@@ -25,13 +25,13 @@ public class chaseTemplate {
     
 	public static void main(String[] args) {
 		//同方的压缩包解压后生成的字段表头文件
-		String sourceFilePath ="D:/Downloads/201-1-T_2023年03月06日08时34分43秒/数据字段说明文档.txt";
+		String sourceFilePath ="D:/Downloads/指标比对/2021_2024年04月02日18时43分20秒/数据字段说明文档.txt";
 		//历年的导入模板匹配文件
-		String historyFilePath ="D:/Downloads/201-1-T_2023年03月06日08时34分43秒/投资.xlsx";
+		String historyFilePath ="D:/Downloads/指标比对/9277.xlsx";
 		//结果输出文件（不用改名字）
-		String newFieldExcelpath="D:/Downloads/201-1-T_2023年03月06日08时34分43秒/新配置文件.xls";
+		String newFieldExcelpath="D:/Downloads/指标比对/2021_2024年04月02日18时43分20秒/新配置文件.xls";
 		//模板配置文件在excel的第几个sheet//历年的导入模板匹配对应的匹配sheet 从1开始
-		int historyFileSheetIndex =3;
+		int historyFileSheetIndex =2;
 		
 		chaseTemplate cTemplate = new chaseTemplate();
 		List<String> sourceFieldList = cTemplate.getSourceField(sourceFilePath);//
